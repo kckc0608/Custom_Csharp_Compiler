@@ -1,3 +1,0 @@
-#Test 지시 파일
-/r:System.Windows.Forms.dll
-/target:exe /out:test.exe *.cs
