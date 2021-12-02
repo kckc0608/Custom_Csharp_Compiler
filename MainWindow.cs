@@ -1,14 +1,20 @@
 ﻿// // Copyright (c) Microsoft. All rights reserved.
 // // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace WindowActivationAndDeactivation
 {
     /// <summary>
-    ///     Interaction logic for App.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class MainWindow : Window
     {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
     }
 }

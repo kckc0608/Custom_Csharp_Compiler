@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8">
+<!--
+  MSBuild 의 버전이 4.0 
+  Project 노드 이하의 내용을 xmlns 의 정책에 따라 읽음. 
+  즉, 이 파일이 project 파일로서 읽어야 함을 알려주는 것
+-->
+<Project ToolsVersion="4.0" DefaultTarget="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionPath)\$(MSBuildToolsVersion)$\Microsoft.Common.props" Condition = "Exists('$(MSBuildExtensionPath)\$(MSBuildToolsVersion)$\Microsoft.Common.props')"/>
+  <!--
+    Project 파일의 내용을 Import해서 해당 위치에 삽입한다.
+    삽입할 프로젝트 파일의 경로는 (MSBuild 가 있는 경로의 MSBuild 버전명의 폴더 밑의 Microsoft.Common.props 파일이다.)
+    단, 조건으로 이 프로젝트 파일이 존재하는 경우에만 삽입한다.
+  -->
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+  <!--
+    뒤에 나오는 target 파일 내부에서 사용하는 OutputType 속성에 속성 값을 준다.
+  -->
+
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Xml"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="System.Xml.Linq"/>
+    <Reference Include="System.Data.DataSetExtensions"/>
+    <Reference Include="System.Xaml"/>
+    <Reference Include="Microsoft.CSharp"/>
+    <Reference Include="WindowsBase"/>
+    <Reference Include="PresentationCore"/>
+    <Reference Include="PresentationFramework"/>
+  </ItemGroup>
+
+  <!--
+    소스 코드에서 using 구문을 통해 가져올 가져올 파일.
+    이때, using 구문을 통해 가져올 파일의 참조를 등록한다.
+    WindowBase, PresentationCore, PresentationFramework, System 은
+    System.Windows 를 사용하기 위해 반드시 참조해야한다.
+  -->
+
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <!--
+    ApplicationDefinition 은 말 그대로 어플리케이션의 정의, 시작점이다.
+    이 xaml 을 MSbuild 를 이용해서 컴파일이 가능한 소스코드로 바꾸어 컴파일한다.
+
+    그 다음 디자인에 해당하는 MainWindow.xaml Page 를 소스코드로 바꾸어 컴파일하고,
+
+    그 결과물을 이용해서 cs 파일을 컴파일한다.
+  -->
+
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <!--
+    위에서 정의한 PropertyGroup 과 ItemGroup 의 내용을 이용해서
+    미리 마이크로소프트가 만들어놓은 기본 CSharp 빌드 Target 대로 빌드한다.
+  -->
+</Project>
