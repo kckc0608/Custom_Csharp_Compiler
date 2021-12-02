@@ -1,3 +1,5 @@
 *.exe
 *.rsp
 WPF-Samples-main/
+bin/
+obj/
