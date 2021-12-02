@@ -1,6 +1,6 @@
 ---
 languages:
-- csharp
+- C#
 products:
 - windows-wpf
 page_type: sample
