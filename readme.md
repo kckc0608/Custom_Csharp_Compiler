@@ -27,3 +27,12 @@ IDE라고 이름은 거창하지만 사실 구조를 뜯어보면 단순합니�
 - 텍스트 편집기능 추가
 - ~~빌드~~, 실행 기능 추가 (진행중)
 - Line Number 기능 추가
+
+### Reference
+- [왕초보개발자](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=tablesetter&logNo=20130207390)
+- [고급WPF영역](https://docs.microsoft.com/ko-kr/dotnet/desktop/wpf/advanced/flow-document-overview?view=netframeworkdesktop-4.8)
+- [컨트롤DOC](https://docs.microsoft.com/en-us/dotnet/desktop/wpf/controls/richtextbox-overview?view=netframeworkdesktop-4.8)
+- [Syntax Highlight Example](https://www.c-sharpcorner.com/article/syntax-highlighting-in-rich-textbox-control-part-1/)
+- [Syntax Highlight Issue Stack Overflow](https://stackoverflow.com/questions/17971300/wpf-richtextbox-syntax-highlighting-issue)
+
+
