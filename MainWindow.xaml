@@ -27,11 +27,19 @@
                     <RowDefinition Height="80"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Button Grid.Row="0">Run</Button>
+                <Button Grid.Row="0" Click="on_Click_Btn_Run">Run</Button>
                 <Button Grid.Row="1" Click="on_Click_Btn_Build">Build</Button>
             </Grid>
             <Grid Grid.Column="2">
-                <RichTextBox x:Name="rtb_code"/>
+                <ScrollViewer>
+                    <RichTextBox x:Name="rtb_code">
+                        <RichTextBox.Resources>
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0"/>  
+                            </Style>
+                        </RichTextBox.Resources>
+                    </RichTextBox>
+                </ScrollViewer>
             </Grid>
         </Grid>
         <Grid Grid.Row = "2" Background="#4f4f4f">

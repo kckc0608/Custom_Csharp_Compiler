@@ -25,7 +25,8 @@ namespace WindowActivationAndDeactivation
         ProcessStartInfo cmdStartInfo = new ProcessStartInfo();
         
         string msbuildPath = @"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild.exe";
-        string projectPath = @"C:\Users\W24880\Desktop\Custom_Csharp_Compiler\WPF_IDE.csproj";
+        string projectPath = @"C:\Users\W24880\Desktop\Custom_Csharp_Compiler\";
+        string projectName = "WPF_IDE.csproj";
 
         public MainWindow()
         {
@@ -54,10 +55,24 @@ namespace WindowActivationAndDeactivation
             try {
                 cmdProcess.Start();
                 MessageBox.Show("Build 중...");
-                cmdProcess.StandardInput.Write(msbuildPath + " " + projectPath + Environment.NewLine);
+                cmdProcess.StandardInput.Write(msbuildPath + " " + projectPath + projectName + Environment.NewLine);
                 cmdProcess.StandardInput.Close();
                 MessageBox.Show(cmdProcess.StandardOutput.ReadToEnd());
                 cmdProcess.WaitForExit();
+                cmdProcess.Close();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void on_Click_Btn_Run(object sender, RoutedEventArgs e) {
+            try {
+                cmdProcess.Start();
+                MessageBox.Show(projectPath + "WPF_IDE.exe");
+                cmdProcess.StandardInput.Write(projectPath + "WPF_IDE.exe");
+                cmdProcess.StandardInput.Close();
+                MessageBox.Show(cmdProcess.StandardOutput.ReadToEnd());
                 cmdProcess.Close();
             }
             catch (Exception ex) {
