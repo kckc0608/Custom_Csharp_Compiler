@@ -51,10 +51,8 @@ namespace WindowActivationAndDeactivation
         }
 
         private void on_Click_Btn_Build(object sender, RoutedEventArgs e) {
-            MessageBox.Show("빌드를 시작합니다.");
             try {
                 cmdProcess.Start();
-                MessageBox.Show("Build 중...");
                 cmdProcess.StandardInput.Write(msbuildPath + " " + projectPath + projectName + Environment.NewLine);
                 cmdProcess.StandardInput.Close();
                 MessageBox.Show(cmdProcess.StandardOutput.ReadToEnd());
@@ -68,9 +66,10 @@ namespace WindowActivationAndDeactivation
 
         private void on_Click_Btn_Run(object sender, RoutedEventArgs e) {
             try {
+                // CMD 의 시작 경로가 Debug 경로에서 시작한다.
                 cmdProcess.Start();
-                MessageBox.Show(projectPath + "WPF_IDE.exe");
-                cmdProcess.StandardInput.Write(projectPath + "WPF_IDE.exe");
+                //MessageBox.Show(cmdProcess.StandardOutput.ReadToEnd());
+                cmdProcess.StandardInput.Write(@"C:\Users\W24880\Desktop\Custom_Csharp_Compiler\WPF_IDE.exe.lnk" + Environment.NewLine);
                 cmdProcess.StandardInput.Close();
                 MessageBox.Show(cmdProcess.StandardOutput.ReadToEnd());
                 cmdProcess.Close();
