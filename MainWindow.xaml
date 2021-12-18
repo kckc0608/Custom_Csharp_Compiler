@@ -6,43 +6,33 @@
         xmlns:local="clr-namespace:WindowActivationAndDeactivation"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="600">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="25"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row = "0" Background="#4f4f4f">
-            <TextBlock Text="Title" Foreground="#FFFFFF"/>
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Click="exportEmployeeButton_Click">to excel</Button>
+                        
+            <DataGrid Name="employeeDataGrid" Grid.Row="2"
+                AutoGenerateColumns="False"
+                SelectionMode="Single"
+                IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Header="ID"
+                        Width="100"
+                        Binding="{Binding Path=ID}" />
+                    <DataGridTextColumn
+                        Header="성명"
+                        Width="200"
+                        Binding="{Binding Path=Name}" />
+                    <DataGridTextColumn
+                        Header="직위"
+                        Width="*"
+                        Binding="{Binding Path=Designation}" />
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
-        <Grid Grid.Row = "1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Click="on_Click_Btn_Run">Run</Button>
-                <Button Grid.Row="1" Click="on_Click_Btn_Build">Build</Button>
-            </Grid>
-            <Grid Grid.Column="2">
-                <ScrollViewer>
-                    <RichTextBox x:Name="rtb_code">
-                        <RichTextBox.Resources>
-                            <Style TargetType="{x:Type Paragraph}">
-                                <Setter Property="Margin" Value="0"/>  
-                            </Style>
-                        </RichTextBox.Resources>
-                    </RichTextBox>
-                </ScrollViewer>
-            </Grid>
-        </Grid>
-        <Grid Grid.Row = "2" Background="#4f4f4f">
-        </Grid>
-    </Grid>
+    </Border>
 </Window>
