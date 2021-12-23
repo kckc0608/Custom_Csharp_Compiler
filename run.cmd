@@ -3,4 +3,4 @@
 :: 명령어를 실행하고, 배치프로그램이 바로 종료되지 않도록 Pause 명령어로 일시중지 시킨다.
 @echo off
 C:\Windows\Microsoft.NET\Framework64\v4.0.30319\MSBuild WPF_IDE.csproj
-Pause
+start bin/Debug/WPF_IDE.exe

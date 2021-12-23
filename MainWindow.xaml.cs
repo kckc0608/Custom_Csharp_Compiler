@@ -18,9 +18,6 @@ using Excel = Microsoft.Office.Interop.Excel;
 
 namespace WindowActivationAndDeactivation
 {
-    /// <summary>
-    ///     Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -88,103 +85,23 @@ namespace WindowActivationAndDeactivation
 
     public class Employee
     {
-        //////////////////////////////////////////////////////////////////////////////////////////////////// Property
-        ////////////////////////////////////////////////////////////////////////////////////////// Public
-
-        #region ID - ID
-
-        /// <summary>
-        /// ID
-        /// </summary>
         public int ID { get; set; }
-
-        #endregion
-        #region 성명 - Name
-
-        /// <summary>
-        /// 성명
-        /// </summary>
         public string Name { get; set; }
-
-        #endregion
-        #region 직위 - Designation
-
-        /// <summary>
-        /// 직위
-        /// </summary>
         public string Designation { get; set; }
-
-        #endregion
     }
 
     public class ExcelExportHelper<TEntity, TList> where TEntity : class where TList : List<TEntity>
     {
-        //////////////////////////////////////////////////////////////////////////////////////////////////// Field
-        ////////////////////////////////////////////////////////////////////////////////////////// Public
-
-        #region Field
-
-        /// <summary>
-        /// 리스트
-        /// </summary>
         public List<TEntity> List;
-
-        #endregion
-
-        ////////////////////////////////////////////////////////////////////////////////////////// Private
-
-        #region Field
-
-        /// <summary>
-        /// 응용 프로그램
-        /// </summary>
         private Microsoft.Office.Interop.Excel.Application application = null;
-
-        /// <summary>
-        /// 워크북들
-        /// </summary>
         private Microsoft.Office.Interop.Excel.Workbooks workbooks = null;
-
-        /// <summary>
-        /// 워크북
-        /// </summary>
         private Microsoft.Office.Interop.Excel._Workbook workbook = null;
-
-        /// <summary>
-        /// 시트들
-        /// </summary>
         private Microsoft.Office.Interop.Excel.Sheets sheets = null;
-
-        /// <summary>
-        /// 워크시트
-        /// </summary>
         Microsoft.Office.Interop.Excel.Worksheet worksheet = null;
-
-        /// <summary>
-        /// 범위
-        /// </summary>
         private Microsoft.Office.Interop.Excel.Range range = null;
-
-        /// <summary>
-        /// 폰트
-        /// </summary>
         private Microsoft.Office.Interop.Excel.Font font = null;
-
-        /// <summary>
-        /// 부가적인 값
-        /// </summary>
         private object optionalValue = Missing.Value;
 
-        #endregion
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////// Method
-        ////////////////////////////////////////////////////////////////////////////////////////// Public
-
-        #region 생성하기 - Generate()
-
-        /// <summary>
-        /// 생성하기
-        /// </summary>
         public void Generate()
         {
             try
@@ -211,15 +128,6 @@ namespace WindowActivationAndDeactivation
             }
         }
 
-        #endregion
-
-        ////////////////////////////////////////////////////////////////////////////////////////// Private
-
-        #region 인스턴스 생성하기 - CreateInstance()
-
-        /// <summary>
-        /// 인스턴스 생성하기
-        /// </summary>
         private void CreateInstance()
         {
             this.application = new Microsoft.Office.Interop.Excel.Application();
@@ -232,13 +140,7 @@ namespace WindowActivationAndDeactivation
 
             this.worksheet = this.sheets[1] as Microsoft.Office.Interop.Excel.Worksheet;
         }
-
-        #endregion
         #region 행들 추가하기 - AddRows(startRange, rowCount, columnCount, values)
-
-        /// <summary>
-        /// 행들 추가하기
-        /// </summary>
         /// <param name="startRange">시작 범위</param>
         /// <param name="rowCount">행 수</param>
         /// <param name="columnCount">열 수</param>
@@ -251,26 +153,18 @@ namespace WindowActivationAndDeactivation
 
             this.range.set_Value(this.optionalValue, values);
         }       
-
         #endregion
-        #region 헤더 스타일 설정하기 - SetHeaderStyle()
 
-        /// <summary>
-        /// 헤더 스타일 설정하기
-        /// </summary>
+        #region 헤더 스타일 설정하기 - SetHeaderStyle()
         private void SetHeaderStyle()
         {
             this.font = this.range.Font;
-
             this.font.Bold = true;
         }
 
         #endregion
-        #region 헤더 생성하기 - CreateHeader()
 
-        /// <summary>
-        /// 헤더 생성하기
-        /// </summary>
+        #region 헤더 생성하기 - CreateHeader()
         /// <returns>헤더 목록</returns>
         private object[] CreateHeader()
         {
@@ -291,13 +185,9 @@ namespace WindowActivationAndDeactivation
 
             return headerArray;
         }
-
         #endregion
-        #region 컬럼 너비 자동 맞추기 - AutoFitColumnWidth(startRange, rowCount, columnCount)
 
-        /// <summary>
-        /// 컬럼 너비 자동 맞추기
-        /// </summary>
+        #region 컬럼 너비 자동 맞추기 - AutoFitColumnWidth(startRange, rowCount, columnCount)
         /// <param name="startRange">시작 범위</param>
         /// <param name="rowCount">행 수</param>
         /// <param name="columnCount">열 수</param>
@@ -312,10 +202,6 @@ namespace WindowActivationAndDeactivation
 
         #endregion
         #region 데이타 작성하기 - WriteData(headerArray)
-
-        /// <summary>
-        /// 데이타 작성하기
-        /// </summary>
         /// <param name="headerArray">헤더 배열</param>
         private void WriteData(object[] headerArray)
         {
@@ -346,11 +232,8 @@ namespace WindowActivationAndDeactivation
         }
 
         #endregion
-        #region 시트 채우기 - FillSheet()
 
-        /// <summary>
-        /// 시트 채우기
-        /// </summary>
+        #region 시트 채우기 - FillSheet()
         private void FillSheet()
         {
             object[] headerArray = CreateHeader();
@@ -359,22 +242,15 @@ namespace WindowActivationAndDeactivation
         }
 
         #endregion
-        #region 엑셀 보여주기 - ShowEXCEL()
 
-        /// <summary>
-        /// 엑셀 보여주기
-        /// </summary>
+        #region 엑셀 보여주기 - ShowEXCEL()
         private void ShowEXCEL()
         {
             this.application.Visible = true;
         }
-
         #endregion
-        #region 인스턴스 해제하기 - ReleaseInstance(instance)
 
-        /// <summary>
-        /// 인스턴스 해제하기
-        /// </summary>
+        #region 인스턴스 해제하기 - ReleaseInstance(instance)
         /// <param name="instance">인스턴스</param>
         private void ReleaseInstance(object instance)
         {
